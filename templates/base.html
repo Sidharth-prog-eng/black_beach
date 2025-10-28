@@ -1,0 +1,333 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}[Hotel Name] - Luxury Resort{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Experience luxury and comfort at [Hotel Name]{% endblock %}">
+    <meta name="keywords" content="Resort, Luxury Hotel, Vacation, Premium Rooms">
+
+    <meta property="og:title" content="[Hotel Name] - Luxury Resort">
+    <meta property="og:description" content="Book your stay at [Hotel Name]. Premium rooms and world-class hospitality.">
+    <meta property="og:image" content="/static/images/preview.jpg">
+    <meta property="og:url" content="https://yourwebsite.com/">
+    <meta property="og:type" content="website">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; }
+
+        /* Minimalist Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            margin: 0;
+        }
+
+        .nav-link {
+            color: #2d2d2d;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #2d2d2d;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after { width: 100%; }
+
+        .hamburger { display: none; }
+
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                height: calc(100vh - 70px);
+                width: 70%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                transition: right 0.3s;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+            #menu-toggle:checked ~ .nav-links { right: 0; }
+        }
+
+        /* Floating Buttons */
+        .whatsapp-float, .back-to-top {
+            position: fixed;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .whatsapp-float {
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .back-to-top {
+            bottom: 90px;
+            right: 25px;
+            background: #2d2d2d;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #f5f5f5;
+        }
+
+        .footer-link {
+            color: #d1d1d1;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+ /* Header Container */
+nav.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; /* compact header padding */
+    height: 70px; /* fixed header height */
+    box-sizing: border-box;
+}
+
+/* Logo */
+.logo {
+    max-height: 150px;  /* logo can grow up to 60px */
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #111;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 0;
+    bottom: -4px;
+    background: #007bff;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #007bff;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hamburger Menu */
+.hamburger svg {
+    width: 28px;
+    height: 28px;
+    color: #111;
+    transition: transform 0.3s ease;
+}
+
+.hamburger:hover svg {
+    transform: scale(1.1);
+}
+
+/* Responsive Nav */
+@media (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        width: 200px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        padding: 15px 0;
+    }
+
+    #menu-toggle:checked + label + .nav-links {
+        transform: translateX(0);
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+        text-align: center;
+    }
+}
+        .footer-link:hover { color: #ffffff; }
+    </style>
+</head>
+<body class="antialiased">
+
+<header>
+    <nav class="container mx-auto flex justify-between items-center py-5 px-6">
+        <!-- Logo instead of Hotel Name -->
+        <a href="/" class="flex items-center">
+            <img src="{% static 'images/logo-.png' %}" alt="Hotel Logo" class="logo">
+        </a>
+
+        <input type="checkbox" id="menu-toggle" hidden>
+        <label for="menu-toggle" class="hamburger cursor-pointer">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </label>
+
+        <ul class="nav-links">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li><a href="/about" class="nav-link">About</a></li>
+            <li><a href="/rooms" class="nav-link">Rooms</a></li>
+            <li><a href="/amenities" class="nav-link">Amenities</a></li>
+            <li><a href="/attractions" class="nav-link">Attraction</a></li>
+            <li><a href="/contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<a href="https://wa.me/[PHONE_NUMBER]" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="white">
+        <path d="M16 .4C7.2.4.1 7.5.1 16.3c0 2.8.7 5.6 2.1 8L0 32l8.1-2.1c2.3 1.2 4.9 1.9 7.8 1.9 8.8 0 15.9-7.1 15.9-15.9S24.8.4 16 .4zm0 28.8c-2.5 0-4.9-.7-7-2l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.4 6-13.4 13.4-13.4 3.6 0 6.9 1.4 9.4 3.9s3.9 5.9 3.9 9.4c0 7.4-6 13.4-13.4 13.4zm7.4-9.9c-.4-.2-2.3-1.1-2.6-1.2s-.6-.2-.8.2c-.2.4-.9 1.2-1.1 1.4-.2.2-.4.3-.8.1s-1.6-.6-3-1.9c-1.1-1-1.9-2.3-2.1-2.6-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.6.2-.2.3-.4.4-.6.1-.2 0-.5 0-.6s-.8-1.9-1.1-2.6c-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.8 1.3 3.2 1.4 3.4c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.3 2.3.2.7-.1 2.3-1 2.6-2 .3-1 .3-1.8.2-2-.2-.1-.5-.2-.9-.4z"/>
+    </svg>
+</a>
+
+<button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="white">
+        <path d="M12 4l-8 8h6v8h4v-8h6z"/>
+    </svg>
+</button>
+
+<footer class="py-12">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 px-6">
+        <div>
+            <h3 class="text-lg font-semibold mb-4 tracking-wide">Contact Us</h3>
+            <p class="text-sm leading-relaxed">[Address Line 1]<br>[Address Line 2]</p>
+            <p class="mt-3 text-sm">[Phone Number]</p>
+            <p class="mt-2 text-sm">[Email Address]</p>
+        </div>
+
+        <div>
+            <h3 class="text-lg font-semibold mb-4 tracking-wide">Quick Links</h3>
+            <ul class="space-y-2">
+                <li><a href="#" class="footer-link">Terms and Conditions</a></li>
+                <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                <li><a href="#" class="footer-link">Refund Policy</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="text-lg font-semibold mb-4 tracking-wide">Follow Us</h3>
+            <div class="flex gap-4 text-2xl">
+                <a href="[FACEBOOK_URL]" target="_blank" class="hover:opacity-70 transition">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="[INSTAGRAM_URL]" target="_blank" class="hover:opacity-70 transition">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="[WHATSAPP_URL]" target="_blank" class="hover:opacity-70 transition">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-10 pt-6 text-center text-sm border-t border-gray-700">
+        <p>©2025 All rights reserved</p>
+        <p class="mt-2">Made with ❤️ by <a href="https://digitalroomz.com/" target="_blank" class="underline hover:opacity-70">DigitalRoomz</a></p>
+    </div>
+</footer>
+
+<script src="{% static 'js/main.js' %}"></script>
+<script>
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('show');
+        } else {
+            backToTop.classList.remove('show');
+        }
+    });
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+
+</body>
+</html>

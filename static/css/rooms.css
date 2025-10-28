@@ -1,0 +1,97 @@
+/* Section Title */
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: #222;
+    font-weight: 700;
+}
+
+.room {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px;
+    border-radius: 8px; /* small subtle rounding */
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    background-color: #fff; /* sharp, clean white background */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.7s ease, box-shadow 0.3s ease;
+}
+
+/* Reverse layout for alternating rooms */
+.room.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Room Image */
+.room-img {
+    flex: 1;
+    overflow: hidden;
+}
+
+.room-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.room-img img:hover {
+    transform: scale(1.08); /* smooth zoom on hover */
+}
+
+/* Room Description */
+.room-desc {
+    flex: 1;
+    padding: 30px 40px;
+}
+
+.room-desc h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #111;
+}
+
+.room-desc p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+/* Book Button */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background: #007bff;
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Fade-in animation */
+.room.fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .room, .room.reverse {
+        flex-direction: column;
+    }
+
+    .room-desc {
+        padding: 20px;
+    }
+}

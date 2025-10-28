@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/attractions.css' %}">
+
+<section class="attractions-section">
+    <h2 class="section-title">Explore Attractions</h2>
+
+    <!-- Attraction 1 -->
+    <div class="attraction fade-in">
+        <div class="attraction-img">
+            <img src="{% static 'images/attraction1.jpg' %}" alt="Attraction 1">
+        </div>
+        <div class="attraction-desc">
+            <h3>City Skyline View</h3>
+            <p>Witness the breathtaking skyline from our premium vantage points. Perfect for photography enthusiasts and tourists alike.</p>
+        </div>
+    </div>
+
+    <!-- Attraction 2 -->
+    <div class="attraction fade-in reverse">
+        <div class="attraction-img">
+            <img src="{% static 'images/attraction2.jpg' %}" alt="Attraction 2">
+        </div>
+        <div class="attraction-desc">
+            <h3>Historic Museum</h3>
+            <p>Explore the rich history and culture through modern exhibits, interactive displays, and guided tours.</p>
+        </div>
+    </div>
+
+    <!-- Attraction 3 -->
+    <div class="attraction fade-in">
+        <div class="attraction-img">
+            <img src="{% static 'images/attraction3.jpg' %}" alt="Attraction 3">
+        </div>
+        <div class="attraction-desc">
+            <h3>Botanical Gardens</h3>
+            <p>Stroll through beautifully curated gardens with exotic plants, fountains, and walking trails designed for relaxation.</p>
+        </div>
+    </div>
+
+    <!-- Attraction 4 -->
+    <div class="attraction fade-in reverse">
+        <div class="attraction-img">
+            <img src="{% static 'images/attraction4.jpg' %}" alt="Attraction 4">
+        </div>
+        <div class="attraction-desc">
+            <h3>Riverfront Promenade</h3>
+            <p>Enjoy a scenic walk along the riverfront, lined with cafes, art installations, and entertainment spaces.</p>
+        </div>
+    </div>
+
+    <!-- Add more attractions as needed -->
+</section>
+
+<script src="{% static 'js/attractions.js' %}"></script>
+{% endblock %}

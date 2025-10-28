@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/rooms.css' %}">
+
+<section class="rooms-section">
+    <h2 class="section-title">Our Rooms</h2>
+
+    <!-- Room 1 -->
+    <div class="room fade-in">
+        <div class="room-img">
+            <img src="{% static 'images/room1.jpg' %}" alt="Deluxe King Room">
+        </div>
+        <div class="room-desc">
+            <h3>Deluxe King Room</h3>
+            <p>Spacious deluxe room featuring a king-sized bed, modern interiors, ensuite bathroom, and balcony views.</p>
+            <a href="#" class="btn">Book Now</a>
+        </div>
+    </div>
+
+    <!-- Room 2 -->
+    <div class="room fade-in reverse">
+        <div class="room-img">
+            <img src="{% static 'images/room2.jpg' %}" alt="Executive Suite">
+        </div>
+        <div class="room-desc">
+            <h3>Executive Suite</h3>
+            <p>Experience luxury with our Executive Suite featuring a private living area and a marble bathroom.</p>
+            <a href="#" class="btn">Book Now</a>
+        </div>
+    </div>
+
+    <!-- Room 3 -->
+    <div class="room fade-in">
+        <div class="room-img">
+            <img src="{% static 'images/room3.jpg' %}" alt="Family Room">
+        </div>
+        <div class="room-desc">
+            <h3>Family Room</h3>
+            <p>Perfect for families, this room offers two queen beds and a cozy seating area.</p>
+            <a href="#" class="btn">Book Now</a>
+        </div>
+    </div>
+
+    <!-- Room 4 -->
+    <div class="room fade-in reverse">
+        <div class="room-img">
+            <img src="{% static 'images/room4.jpg' %}" alt="Ocean View Room">
+        </div>
+        <div class="room-desc">
+            <h3>Ocean View Room</h3>
+            <p>Wake up to breathtaking ocean views from your private balcony.</p>
+            <a href="#" class="btn">Book Now</a>
+        </div>
+    </div>
+
+    <!-- Room 5 -->
+    <div class="room fade-in">
+        <div class="room-img">
+            <img src="{% static 'images/room5.jpg' %}" alt="Classic Double Room">
+        </div>
+        <div class="room-desc">
+            <h3>Classic Double Room</h3>
+            <p>Charming twin beds with elegant design and modern amenities.</p>
+            <a href="#" class="btn">Book Now</a>
+        </div>
+    </div>
+
+    <!-- Room 6 -->
+    <div class="room fade-in reverse">
+        <div class="room-img">
+            <img src="{% static 'images/room6.jpg' %}" alt="Luxury Penthouse">
+        </div>
+        <div class="room-desc">
+            <h3>Luxury Penthouse</h3>
+            <p>The ultimate luxury penthouse with panoramic views and private jacuzzi.</p>
+            <a href="#" class="btn">Book Now</a>
+        </div>
+    </div>
+
+</section>
+
+<script src="{% static 'js/rooms.js' %}"></script>
+{% endblock %}

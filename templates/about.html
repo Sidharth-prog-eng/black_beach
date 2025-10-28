@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}About Us - Our Hotel{% endblock %}
+
+{% block content %}
+<!-- Custom Styles -->
+<style>
+    /* General layout */
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #fafafa;
+    }
+
+    section {
+        padding: 100px 0;
+    }
+
+    h1, h2 {
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    p {
+        color: #555;
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    /* Section backgrounds */
+    .unique-section {
+        background: linear-gradient(to right, #f9f9f9, #f1f1f1);
+    }
+
+    .choose-section {
+        background: #ffffff;
+    }
+
+    /* Icon styling */
+    .unique-section img, .choose-section img {
+        max-width: 100px;
+        transition: transform 0.4s ease;
+    }
+
+    .unique-section img:hover, .choose-section img:hover {
+        transform: rotate(10deg) scale(1.1);
+    }
+
+    /* Reception image styling */
+    .reception-image img {
+        max-width: 85%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .reception-image img:hover {
+        transform: scale(1.03);
+        box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+    }
+
+    /* Fade-in animations */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 1s ease;
+    }
+
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+
+<!-- About Us Section -->
+<section class="about-welcome text-center fade-in">
+    <div class="container">
+        <h1 class="display-4 mb-4">Welcome to Our Hotel</h1>
+        <p class="lead mx-auto" style="max-width: 800px;">
+            Experience comfort, luxury, and exceptional hospitality at Our Hotel.
+            Whether you’re here for business, leisure, or a special celebration,
+            we make sure every moment you spend with us feels extraordinary.
+        </p>
+    </div>
+</section>
+
+<!-- What Makes Us Unique -->
+<section class="unique-section text-center fade-in">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-2">
+                <img src="{% static 'images/unique-icon.png' %}" alt="Unique Icon" class="img-fluid">
+            </div>
+            <div class="col-md-8">
+                <h2 class="mb-3">What Makes Us Unique</h2>
+                <p>
+                    Our Hotel blends modern elegance with local charm.
+                    We offer personalized services, eco-friendly amenities, and
+                    thoughtfully designed rooms that reflect the beauty of our surroundings.
+                </p>
+            </div>
+            <div class="col-md-2">
+              <img src="{% static 'images/unique-icon.png' %}" alt="Unique Icon" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="choose-section text-center fade-in">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-2">
+                <img src="{% static 'images/unique-icon.png' %}" alt="Unique Icon" class="img-fluid">
+            </div>
+            <div class="col-md-8">
+                <h2 class="mb-3">Why Choose Us</h2>
+                <p>
+                    From top-notch customer service to luxurious accommodations,
+                    we take pride in offering everything you need for a memorable stay.
+                    Our commitment to comfort, cleanliness, and convenience
+                    makes us your home away from home.
+                </p>
+            </div>
+            <div class="col-md-2">
+                <img src="{% static 'images/unique-icon.png' %}" alt="Unique Icon" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Reception Image -->
+<section class="reception-image text-center fade-in">
+    <div class="container">
+         <img src="{% static 'images/unique-icon.png' %}" alt="Unique Icon" class="img-fluid">
+</section>
+
+<!-- Simple JS for fade-in scroll effect -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        fadeElements.forEach(el => observer.observe(el));
+    });
+</script>
+{% endblock %}

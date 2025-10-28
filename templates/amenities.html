@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/amenities.css' %}">
+
+<section class="amenities-section">
+    <h2 class="section-title">Amenities & Services</h2>
+
+    <!-- Tabs for filtering -->
+    <div class="tabs">
+        <button class="tab-btn active" data-target="amenities">Amenities</button>
+        <button class="tab-btn" data-target="services">Services</button>
+    </div>
+
+    <!-- Amenities Grid -->
+    <div class="amenities-grid fade-in active" id="amenities">
+        <!-- Example Amenity Card -->
+        <div class="amenity-card">
+            <div class="icon">
+                <!-- Insert Icon Here -->
+            </div>
+            <h3>Free Wi-Fi</h3>
+            <p>High-speed internet access in all rooms and common areas for your convenience.</p>
+        </div>
+
+        <div class="amenity-card">
+            <div class="icon">
+                <!-- Insert Icon Here -->
+            </div>
+            <h3>Swimming Pool</h3>
+            <p>Enjoy our rooftop pool with panoramic city views and comfortable lounge seating.</p>
+        </div>
+
+        <!-- Add more amenities as needed -->
+    </div>
+
+    <!-- Services Grid -->
+    <div class="amenities-grid fade-in" id="services">
+        <!-- Example Service Card -->
+        <div class="amenity-card">
+            <div class="icon">
+                <!-- Insert Icon Here -->
+            </div>
+            <h3>Room Service</h3>
+            <p>24/7 in-room dining with a wide selection of gourmet meals and beverages.</p>
+        </div>
+
+        <div class="amenity-card">
+            <div class="icon">
+                <!-- Insert Icon Here -->
+            </div>
+            <h3>Spa & Wellness</h3>
+            <p>Relax with massages, facials, and wellness treatments in our luxury spa.</p>
+        </div>
+    </div>
+</section>
+<script src="{% static 'js/amenities.js' %}"></script>
+{% endblock %}

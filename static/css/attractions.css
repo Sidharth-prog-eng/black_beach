@@ -1,0 +1,92 @@
+/* Section Title */
+.section-title {
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 60px;
+    color: #0f0f0f;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Attraction Card */
+.attraction {
+    display: flex;
+    align-items: center;
+    margin-bottom: 70px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #ffffff, #e5e5e5);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+/* Reverse layout */
+.attraction.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Image */
+.attraction-img {
+    flex: 1;
+    overflow: hidden;
+}
+
+.attraction-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    border-radius: 0;
+}
+
+.attraction-img img:hover {
+    transform: scale(1.05) rotate(1deg);
+    filter: brightness(1.1) contrast(1.05);
+}
+
+/* Description */
+.attraction-desc {
+    flex: 1;
+    padding: 40px 50px;
+}
+
+.attraction-desc h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #111;
+    position: relative;
+    animation: textGlow 2s infinite alternate;
+}
+
+.attraction-desc p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #444;
+}
+
+/* Text glow animation */
+@keyframes textGlow {
+    0% { text-shadow: 0 0 3px #00f, 0 0 8px #00f;}
+    100% { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;}
+}
+
+/* Fade-in animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .attraction, .attraction.reverse {
+        flex-direction: column;
+    }
+
+    .attraction-desc {
+        padding: 25px 20px;
+    }
+}
