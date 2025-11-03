@@ -1,155 +1,302 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-{% block title %}About Us - Our Hotel{% endblock %}
+{% block title %}About Us - Black Beach Resort{% endblock %}
 
 {% block content %}
-<!-- Custom Styles -->
 <style>
-    /* General layout */
-    body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #fafafa;
+/* Hero Section */
+.hero-section {
+    background: url("{% static 'images/amenities_b.jpg' %}") center center / cover no-repeat;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+}
+
+.hero-section .hero-content {
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 1s ease forwards;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    color: #0096A4;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+/* About Section Layout */
+.about-main-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 60px;
+    gap: 40px;
+    background-color: #fff;
+    border-top: 3px solid #0096A4;
+    border-bottom: 3px solid #0096A4;
+}
+
+/* Text content (left side) */
+.about-text {
+    flex: 1 1 50%;
+    max-width: 600px;
+}
+
+.about-text h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #002D32;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.about-text h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 4px;
+    background: #0096A4;
+    border-radius: 2px;
+}
+
+.about-text p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* Image placeholder (right side) */
+.about-image-space {
+    flex: 1 1 45%;
+    min-height: 350px;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hotel Information Section */
+.hotel-info-section {
+    background-color: #f9f9f9;
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.hotel-info-section h2 {
+    font-size: 2.5rem;
+    color: #002D32;
+    font-weight: bold;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.hotel-info-section h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 4px;
+    background: #0096A4;
+    border-radius: 2px;
+}
+
+.hotel-info-section p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .about-main-section {
+        flex-direction: column;
+        text-align: center;
     }
 
-    section {
-        padding: 100px 0;
+    .about-text, .about-image-space {
+        max-width: 100%;
     }
 
-    h1, h2 {
-        font-weight: 700;
-        color: #2c3e50;
+    .about-text h2 {
+        text-align: center;
     }
 
-    p {
-        color: #555;
-        font-size: 1.1rem;
-        line-height: 1.8;
+    .hotel-info-section {
+        padding: 60px 20px;
+        text-align: center;
     }
-
-    /* Section backgrounds */
-    .unique-section {
-        background: linear-gradient(to right, #f9f9f9, #f1f1f1);
-    }
-
-    .choose-section {
-        background: #ffffff;
-    }
-
-    /* Icon styling */
-    .unique-section img, .choose-section img {
-        max-width: 100px;
-        transition: transform 0.4s ease;
-    }
-
-    .unique-section img:hover, .choose-section img:hover {
-        transform: rotate(10deg) scale(1.1);
-    }
-
-    /* Reception image styling */
-    .reception-image img {
-        max-width: 85%;
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        transition: transform 0.5s ease, box-shadow 0.5s ease;
-    }
-
-    .reception-image img:hover {
-        transform: scale(1.03);
-        box-shadow: 0 12px 35px rgba(0,0,0,0.25);
-    }
-
-    /* Fade-in animations */
-    .fade-in {
-        opacity: 0;
-        transform: translateY(40px);
-        transition: all 1s ease;
-    }
-
-    .fade-in.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
+}
 </style>
 
-<!-- About Us Section -->
-<section class="about-welcome text-center fade-in">
-    <div class="container">
-        <h1 class="display-4 mb-4">Welcome to Our Hotel</h1>
-        <p class="lead mx-auto" style="max-width: 800px;">
-            Experience comfort, luxury, and exceptional hospitality at Our Hotel.
-            Whether you’re here for business, leisure, or a special celebration,
-            we make sure every moment you spend with us feels extraordinary.
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>Welcome to Black Beach Resort</h1>
+        <p>Where golden sunsets, the sound of waves, and timeless comfort come together for an unforgettable escape.</p>
+    </div>
+</section>
+
+<!-- Main About Section (Text Left / Image Right) -->
+<section class="about-main-section">
+    <div class="about-text">
+        <h2>Gateway to your Innerpeace</h2>
+        <p>
+            Welcome to Black Beach Resort, your seaside sanctuary located at North Cliff End, Thiruvambadi, Varkala —
+            where golden sunsets, the sound of waves, and timeless comfort come together for an unforgettable escape.
+        </p>
+    </div>
+    <div class="about-image-space">
+        <img src="{% static 'images/b_about.jpg' %}" alt="Reception Image" style="width:100%; border-radius:15px;">
+    </div>
+</section>
+
+<!-- Hotel Information Section -->
+<section class="hotel-info-section" style="padding:80px 20px; background:#f9f9f9; border-top:3px solid #0096A4; border-bottom:3px solid #0096A4;">
+    <h2 style="text-align:center; font-size:2.8rem; color:#002D32; position:relative; padding-bottom:10px; margin-bottom:60px;">
+        Hotel Information
+    </h2>
+
+    <div class="hotel-info-columns" style="display:flex; flex-wrap:wrap; justify-content:center; max-width:1200px; margin:0 auto; gap:30px;">
+        <!-- Column 1 -->
+        <div class="hotel-column" style="flex:1 1 250px; min-width:250px; text-align:center; border-right:1px solid #ccc; padding:0 20px;">
+            <h3 style="margin-bottom:15px;">CHECK IN – CHECK OUT</h3>
+            <p><strong>Check-in:</strong> from 2:00 pm</p>
+            <p><strong>Check-out:</strong> until noon</p>
+
+            <h3 style="margin-top:30px; margin-bottom:15px;">DINING</h3>
+            <p>Multiple dining areas</p>
+
+            <h3 style="margin-top:30px; margin-bottom:15px;">CURRENT TEMPERATURE</h3>
+            <p>22.05°C</p>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="hotel-column" style="flex:1 1 250px; min-width:250px; text-align:center; border-right:1px solid #ccc; padding:0 20px;">
+            <h3 style="margin-bottom:15px;">ROOMS & SUITES</h3>
+            <p>12 stand-alone bungalows built beside a picturesque seasonal riverbed</p>
+
+            <h3 style="margin-top:30px; margin-bottom:15px;">WELLNESS</h3>
+            <p>Spa Therapies, Pool, and In-room fitness equipment</p>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="hotel-column" style="flex:1 1 250px; min-width:250px; text-align:center; padding:0 20px;">
+            <h3 style="margin-bottom:15px;">CONTACT</h3>
+            <p>North Cliff End, Thiruvambadi, Varkala, Kerala, India</p>
+            <p>Email: <a href="mailto:blackbeachvarkala@gmail.com">blackbeachvarkala@gmail.com</a></p>
+            <p>Phone: +91 99477 74765</p>
+            <p>Instagram: @blackbeachresortvarkala</p>
+            <p>Facebook: @blackbeachresortvarkala</p>
+        </div>
+    </div>
+
+    <div style="margin-top:40px; text-align:center; font-size:1.2rem; color:#555; max-width:800px; margin-left:auto; margin-right:auto;">
+        <p>At Black Beach Resort, we believe every guest deserves personal attention and a seamless experience — so don’t hesitate to get in touch. Your perfect beach escape is just a message away.</p>
+    </div>
+</section>
+<!-- Amenities Section -->
+<section class="amenities-section" style="padding:80px 20px; background:#fff; border-top:3px solid #0096A4; border-bottom:3px solid #0096A4; margin-top:60px;">
+    <h2 style="text-align:center; font-size:2.8rem; color:#002D32; position:relative; padding-bottom:10px; margin-bottom:60px;">
+        Amenities & Services
+    </h2>
+
+    <div class="amenities-columns" style="display:flex; flex-wrap:wrap; justify-content:center; max-width:1200px; margin:0 auto; gap:30px;">
+        <!-- Column 1 -->
+        <div class="amenities-column" style="flex:1 1 250px; min-width:250px; text-align:center; border-right:1px solid #ccc; padding:0 20px;">
+            <h3 style="margin-bottom:15px; font-size:1.6rem; font-weight:700; color:#0096A4;">Guest Services</h3>
+            <ul style="list-style:none; padding:0; text-align:left; font-size:1.1rem; color:#555;">
+                <li>Bellboy assistance</li>
+                <li>Concierge support</li>
+                <li>Luggage handling</li>
+                <li>Wake-up calls</li>
+                <li>Mail assistance</li>
+                <li>Caretaker facilities</li>
+            </ul>
+
+            <h3 style="margin-top:30px; margin-bottom:15px; font-size:1.6rem; font-weight:700; color:#0096A4;">Security & Safety</h3>
+            <ul style="list-style:none; padding:0; text-align:left; font-size:1.1rem; color:#555;">
+                <li>24-hour security</li>
+                <li>CCTV surveillance</li>
+                <li>Fire extinguishers</li>
+                <li>Emergency exit maps</li>
+                <li>Smoke and safety alarms</li>
+            </ul>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="amenities-column" style="flex:1 1 250px; min-width:250px; text-align:center; border-right:1px solid #ccc; padding:0 20px;">
+            <h3 style="margin-bottom:15px; font-size:1.6rem; font-weight:700; color:#0096A4;">Medical & Travel</h3>
+            <ul style="list-style:none; padding:0; text-align:left; font-size:1.1rem; color:#555;">
+                <li>First-aid services</li>
+                <li>Doctor-on-call</li>
+                <li>Access to medical centre</li>
+                <li>Airport, railway, and bus transfers</li>
+                <li>City tours & public transit ticket assistance</li>
+            </ul>
+
+            <h3 style="margin-top:30px; margin-bottom:15px; font-size:1.6rem; font-weight:700; color:#0096A4;">Family & Business</h3>
+            <ul style="list-style:none; padding:0; text-align:left; font-size:1.1rem; color:#555;">
+                <li>Childcare services</li>
+                <li>In-house printer</li>
+                <li>Event support for small gatherings</li>
+            </ul>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="amenities-column" style="flex:1 1 250px; min-width:250px; text-align:center; padding:0 20px;">
+            <h3 style="margin-bottom:15px; font-size:1.6rem; font-weight:700; color:#0096A4;">Comfort & Leisure</h3>
+            <ul style="list-style:none; padding:0; text-align:left; font-size:1.1rem; color:#555;">
+                <li>Pool towels & beach towels</li>
+                <li>Massage options</li>
+                <li>Tour assistance</li>
+                <li>Personalized service</li>
+                <li>Modern facilities</li>
+                <li>Heartfelt hospitality</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- Why Choose Us Section -->
+<section class="choose-us-section" style="padding:80px 20px; background:#f9f9f9; border-top:3px solid #0096A4; border-bottom:3px solid #0096A4;">
+    <h2 style="text-align:center; font-size:2.8rem; color:#002D32; position:relative; padding-bottom:10px; margin-bottom:60px;">
+        Why Choose Us
+    </h2>
+
+    <div class="choose-us-content" style="max-width:1000px; margin:0 auto; font-size:1.15rem; line-height:1.8; color:#555; text-align:justify; gap:30px;">
+        <p>
+            With 50 beautifully appointed rooms, every stay is a celebration of comfort and coastal charm. Choose from our diverse room categories — Standard Non AC, Standard AC, Deluxe AC, Superior, Heritage Suite, Heritage Cottage, Family Suite, and our signature luxury, the Signature Suite — featuring a private balcony or terrace overlooking lush greenery or the endless sea.
+        </p>
+        <p>
+            At Black Beach Resort Varkala, every moment is crafted for joy. Spend your day basking in the sun, indulging in boat rides, water sports, or a thrilling jungle safari. Explore the nearby temples, cycle through scenic trails, or unwind at our library, gaming room, or fitness centre.
+        </p>
+        <p>
+            Whether you seek peaceful relaxation or exciting exploration, our activity centre ensures every experience feels extraordinary. More than just a stay — it’s a feeling, a rhythm, a connection to the coast. Discover why Black Beach Resort is one of the most loved beach view resorts in Varkala, where nature, luxury, and Kerala’s warm hospitality embrace you at every sunset.
         </p>
     </div>
 </section>
-
-<!-- What Makes Us Unique -->
-<section class="unique-section text-center fade-in">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-2">
-                <img src="{% static 'images/unique-icon.png' %}" alt="Unique Icon" class="img-fluid">
-            </div>
-            <div class="col-md-8">
-                <h2 class="mb-3">What Makes Us Unique</h2>
-                <p>
-                    Our Hotel blends modern elegance with local charm.
-                    We offer personalized services, eco-friendly amenities, and
-                    thoughtfully designed rooms that reflect the beauty of our surroundings.
-                </p>
-            </div>
-            <div class="col-md-2">
-              <img src="{% static 'images/unique-icon.png' %}" alt="Unique Icon" class="img-fluid">
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Why Choose Us -->
-<section class="choose-section text-center fade-in">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-2">
-                <img src="{% static 'images/unique-icon.png' %}" alt="Unique Icon" class="img-fluid">
-            </div>
-            <div class="col-md-8">
-                <h2 class="mb-3">Why Choose Us</h2>
-                <p>
-                    From top-notch customer service to luxurious accommodations,
-                    we take pride in offering everything you need for a memorable stay.
-                    Our commitment to comfort, cleanliness, and convenience
-                    makes us your home away from home.
-                </p>
-            </div>
-            <div class="col-md-2">
-                <img src="{% static 'images/unique-icon.png' %}" alt="Unique Icon" class="img-fluid">
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Reception Image -->
-<section class="reception-image text-center fade-in">
-    <div class="container">
-         <img src="{% static 'images/unique-icon.png' %}" alt="Unique Icon" class="img-fluid">
-</section>
-
-<!-- Simple JS for fade-in scroll effect -->
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const fadeElements = document.querySelectorAll('.fade-in');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.2 });
-
-        fadeElements.forEach(el => observer.observe(el));
-    });
-</script>
 {% endblock %}

@@ -5,13 +5,93 @@
 {% block meta_description %}Experience luxury and comfort at [Hotel Name]. Premium rooms, world-class amenities, and unforgettable experiences await you.{% endblock %}
 
 {% block content %}
+<style>
+.about-section {
+    position: relative;
+    background-color: #ffffff;
+    overflow: hidden;
+}
 
-<!-- Hero Section with Image Slider -->
+/* Watermark logo in the corner */
+.about-section::before {
+    content: "";
+    position: absolute;
+    bottom: 40px; /* distance from bottom (was 20px) */
+    right: 40px;  /* distance from right (was 20px) */
+    width: 350px; /* larger size (was 200px) */
+    height: 450px;
+    background-image: url("{% static 'images/logo-.png' %}");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    opacity: 0.25; /* make it more visible (was 0.1) */
+    filter: brightness(1.2) contrast(2.1); /* enhances visibility */
+    background-blend-mode: lighten; /* blends logo with background */
+
+    pointer-events: none; /* ensures logo doesn't block clicks */
+    z-index: 0;
+}
+
+/* Ensure content stays above the logo */
+.about-section .container {
+    position: relative;
+    z-index: 1;
+}
+    /* === GLOBAL COLOR & BORDER STYLING === */
+
+/* All major sections get a light tint of #0096A4 */
+section {
+  background-color: rgba(0, 150, 164, 0.04); /* soft tint */
+  border-top: 3px solid gold;
+  border-bottom: 3px solid gold;
+}
+
+/* Cards (Rooms, Attractions, Properties, Amenities, etc.) */
+.room-card,
+.attraction-card,
+.property-card,
+.amenity-card {
+  border: 2px solid gold !important;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hover effect for cards */
+.room-card:hover,
+.attraction-card:hover,
+.property-card:hover,
+.amenity-card:hover {
+  border-color: #0096A4;
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(0, 150, 164, 0.3);
+}
+
+/* Optional: make headings or accents match the #0096A4 tone */
+h2, h3, .section-title {
+  color: #0096A4;
+}
+
+/* Keep hero slider unaffected */
+.hero-slider,
+.hero-slider * {
+  border: none !important;
+  background: none !important;
+}
+.about-image img {
+  border: 3px solid gold;
+  padding: 4px; /* adds a thin gap inside the border */
+  border-radius: 10px; /* matches rounded look */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+</style>
 <section class="hero-slider relative h-screen overflow-hidden">
     <div class="slider-container relative w-full h-full">
         <!-- Slide 1 -->
         <div class="slide active absolute w-full h-full">
-            <img src="{% static 'images/black_beach.jpg' %}" alt="Hero Image 1" class="w-full h-full object-cover">
+            <img src="{% static 'images/b_beach1.jpg' %}" alt="Hero Image 1" class="w-full h-full object-cover">
             <div class="slide-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                 <div class="text-center text-white px-6">
                     <h1 class="text-5xl md:text-7xl font-bold mb-4">Welcome to Paradise</h1>
@@ -23,7 +103,7 @@
 
         <!-- Slide 2 -->
         <div class="slide absolute w-full h-full">
-            <img src="{% static 'images/black_beach3.jpg' %}" alt="Hero Image 2" class="w-full h-full object-cover">
+            <img src="{% static 'images/b_beach2.jpg' %}" alt="Hero Image 2" class="w-full h-full object-cover">
             <div class="slide-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                 <div class="text-center text-white px-6">
                     <h1 class="text-5xl md:text-7xl font-bold mb-4">Discover Tranquility</h1>
@@ -66,257 +146,360 @@
     </div>
 </section>
 
-<!-- About Us Section -->
-<section class="about-section py-20 bg-white">
-    <div class="container mx-auto px-6">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-            <div class="about-image">
-                <img src="{% static 'images/about_b.jpg' %}" alt="About Us" class="rounded-lg shadow-2xl w-full">
-            </div>
-            <div class="about-content">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">About Us</h2>
-                <p class="text-lg text-gray-700 mb-4 leading-relaxed">
-                    Welcome to [Hotel Name], where luxury meets comfort. Nestled in the heart of Kerala, our resort offers an unparalleled experience that combines traditional hospitality with modern amenities.
-                </p>
-                <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-                    Whether you're seeking a peaceful retreat or an adventurous getaway, our world-class facilities and dedicated staff ensure your stay is nothing short of extraordinary.
-                </p>
-                <a href="/about" class="inline-block px-8 py-3 bg-gray-900 text-white font-semibold rounded hover:bg-gray-800 transition">Learn More</a>
-            </div>
-        </div>
-    </div>
+<section class="relative z-20 -mt-12 bg-gradient-to-r from-[#0096A4]/10 to-white py-10">
+  <div class="container mx-auto px-6">
+    <form action="/booking" method="GET"
+          class="bg-white/95 shadow-xl border border-[#0096A4]/20 rounded-lg p-6 grid grid-cols-1 md:grid-cols-4 gap-6 backdrop-blur-sm">
+
+      <!-- Check-in -->
+      <div>
+        <label for="checkin" class="block text-black font-semibold mb-1">Check-in</label>
+        <input type="date" id="checkin" name="checkin"
+               class="w-full border border-[#0096A4]/40 rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-[#0096A4] focus:border-[#0096A4] transition duration-200" required>
+      </div>
+
+      <!-- Check-out -->
+      <div>
+        <label for="checkout" class="block text-black font-semibold mb-1">Check-out</label>
+        <input type="date" id="checkout" name="checkout"
+               class="w-full border border-[#0096A4]/40 rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-[#0096A4] focus:border-[#0096A4] transition duration-200" required>
+      </div>
+
+      <!-- Guests -->
+      <div>
+        <label for="guests" class="block text-black font-semibold mb-1">Guests</label>
+        <select id="guests" name="guests"
+                class="w-full border border-[#0096A4]/40 rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-[#0096A4] focus:border-[#0096A4] transition duration-200" required>
+          <option value="1">1 Guest</option>
+          <option value="2">2 Guests</option>
+          <option value="3">3 Guests</option>
+          <option value="4+">4+ Guests</option>
+        </select>
+      </div>
+
+      <!-- Submit -->
+      <div class="flex items-end">
+        <button type="submit"
+          class="w-full bg-[#0096A4] hover:bg-black text-white font-semibold py-3 rounded-lg transition duration-300 shadow-md hover:shadow-xl">
+          Check Availability
+        </button>
+      </div>
+
+    </form>
+  </div>
 </section>
 
-<!-- Rooms Section -->
-<section class="rooms-section py-20 bg-gray-50">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4">Our Rooms</h2>
-            <p class="text-lg text-gray-600">Experience comfort and luxury in every stay</p>
-        </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- Room 1 -->
-            <div class="room-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                <div class="room-image h-64 overflow-hidden">
-                    <img src="{% static 'images/b_deluxe.jpg' %}" alt="Deluxe Room" class="w-full h-full object-cover">
-                </div>
-                <div class="room-content p-6">
-                    <h3 class="text-2xl font-bold mb-3">Deluxe Room</h3>
-                    <p class="text-gray-600 mb-4">Spacious rooms with premium amenities and stunning views</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-2xl font-bold text-gray-900">₹3,999/night</span>
-                        <a href="/rooms" class="text-blue-600 hover:text-blue-800 font-semibold">View Details →</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Room 2 -->
-            <div class="room-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                <div class="room-image h-64 overflow-hidden">
-                    <img src="{% static 'images/standard_ac.jpg' %}" alt="Premium Suite" class="w-full h-full object-cover">
-                </div>
-                <div class="room-content p-6">
-                    <h3 class="text-2xl font-bold mb-3">Premium Suite</h3>
-                    <p class="text-gray-600 mb-4">Luxurious suites with private balcony and lake view</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-2xl font-bold text-gray-900">₹5,999/night</span>
-                        <a href="/rooms" class="text-blue-600 hover:text-blue-800 font-semibold">View Details →</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Room 3 -->
-            <div class="room-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                <div class="room-image h-64 overflow-hidden">
-                    <img src="{% static 'images/b_family.jpg' %}" alt="Family Villa" class="w-full h-full object-cover">
-                </div>
-                <div class="room-content p-6">
-                    <h3 class="text-2xl font-bold mb-3">Family Villa</h3>
-                    <p class="text-gray-600 mb-4">Perfect for families with spacious living areas</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-2xl font-bold text-gray-900">₹8,999/night</span>
-                        <a href="/rooms" class="text-blue-600 hover:text-blue-800 font-semibold">View Details →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="text-center mt-12">
-            <a href="/rooms" class="inline-block px-10 py-4 bg-gray-900 text-white font-semibold rounded hover:bg-gray-800 transition">View All Rooms</a>
-        </div>
+<section class="about-section py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="about-image">
+        <img src="{% static 'images/about_b.jpg' %}" alt="About Us" class="rounded-lg shadow-2xl w-full">
+      </div>
+      <div class="about-content">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">Black Beach Resort</h2>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+          Welcome to Black Beach Resort, your seaside sanctuary located at North Cliff End,
+          Thiruvambadi, Varkala — where golden sunsets, the sound of waves, and timeless comfort
+          come together for an unforgettable escape.
+        </p>
+        <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+          Perched right beside the Black Sand Beach and the iconic Sunset Point, our beachfront
+          resort in Varkala is designed for travelers who seek both serenity and adventure.
+        </p>
+        <a href="/about" class="inline-block px-8 py-3 bg-[#0096A4] text-white font-semibold rounded">
+          Learn More
+        </a>
+      </div>
     </div>
+  </div>
+</section>
+
+
+<!-- Rooms Section -->
+<section
+  class="rooms-section relative py-20 bg-cover bg-center bg-no-repeat"
+  style="background-image: ur"
+>
+  <!-- Lighter overlay for clearer background -->
+  <div class="absolute inset-0 bg-white bg-opacity-40"></div>
+
+  <div class="relative container mx-auto px-6 z-10">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-[#002D32]">Our Premium Accommodations</h2>
+      <p class="text-lg text-gray-800">Experience comfort and luxury in every stay</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- Room 1: Deluxe Room -->
+      <div class="room-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 border-2 border-yellow-300 hover:shadow-2xl">
+        <div class="room-image h-64 overflow-hidden">
+          <img src="{% static 'images/b_deluxe.jpg' %}" alt="Deluxe Room" class="w-full h-full object-cover">
+        </div>
+        <div class="room-content p-6">
+          <h3 class="text-2xl font-bold mb-3">Deluxe Room</h3>
+          <p class="text-gray-600 mb-4">Spacious rooms with premium amenities and stunning views</p>
+          <div class="flex justify-between items-center">
+            <span class="text-2xl font-bold text-gray-900">₹3,999/night</span>
+            <div class="flex gap-4">
+              <a href="/rooms" class="text-blue-600 hover:text-blue-800 font-semibold">View Details →</a>
+               <a href="/booking" class="px-4 py-2 bg-[#0096A4] text-white text-sm font-semibold rounded">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Room 2: Standard AC Room -->
+      <div class="room-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 border-2 border-yellow-300 hover:shadow-2xl">
+        <div class="room-image h-64 overflow-hidden">
+          <img src="{% static 'images/standard_ac.jpg' %}" alt="Standard AC Room" class="w-full h-full object-cover">
+        </div>
+        <div class="room-content p-6">
+          <h3 class="text-2xl font-bold mb-3">Standard AC Room</h3>
+          <p class="text-gray-600 mb-4">Air-conditioned rooms with garden views, perfect for a refreshing stay</p>
+          <div class="flex justify-between items-center">
+            <span class="text-2xl font-bold text-gray-900">₹5,999/night</span>
+            <div class="flex gap-4">
+              <a href="/rooms" class="text-blue-600 hover:text-blue-800 font-semibold">View Details →</a>
+              <a href="/booking" class="px-4 py-2 bg-[#0096A4] text-white text-sm font-semibold rounded">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Room 3: Family Villa -->
+      <div class="room-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 border-2 border-yellow-300 hover:shadow-2xl">
+        <div class="room-image h-64 overflow-hidden">
+          <img src="{% static 'images/b_family.jpg' %}" alt="Family Villa" class="w-full h-full object-cover">
+        </div>
+        <div class="room-content p-6">
+          <h3 class="text-2xl font-bold mb-3">Family Villa</h3>
+          <p class="text-gray-600 mb-4">Perfect for families with spacious living areas</p>
+          <div class="flex justify-between items-center">
+            <span class="text-2xl font-bold text-gray-900">₹8,999/night</span>
+            <div class="flex gap-4">
+              <a href="/rooms" class="text-blue-600 hover:text-blue-800 font-semibold">View Details →</a>
+              <a href="/booking" class="px-4 py-2 bg-[#0096A4] text-white text-sm font-semibold rounded">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Room 4: Heritage Cottage -->
+      <div class="room-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 border-2 border-yellow-300 hover:shadow-2xl">
+        <div class="room-image h-64 overflow-hidden">
+          <img src="{% static 'images/b_cottage.jpg' %}" alt="Heritage Cottage" class="w-full h-full object-cover">
+        </div>
+        <div class="room-content p-6">
+          <h3 class="text-2xl font-bold mb-3">Heritage Cottage</h3>
+          <p class="text-gray-600 mb-4">Traditional Kerala-style cottages with modern amenities and garden views</p>
+          <div class="flex justify-between items-center">
+            <span class="text-2xl font-bold text-gray-900">₹4,500 – ₹11,500/night</span>
+            <div class="flex gap-4">
+              <a href="/rooms" class="text-blue-600 hover:text-blue-800 font-semibold">View Details →</a>
+              <a href="/booking" class="px-4 py-2 bg-[#0096A4] text-white text-sm font-semibold rounded">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Room 5: Signature Suite -->
+      <div class="room-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 border-2 border-yellow-300 hover:shadow-2xl">
+        <div class="room-image h-64 overflow-hidden">
+          <img src="{% static 'images/b_signature.jpg' %}" alt="Signature Suite" class="w-full h-full object-cover">
+        </div>
+        <div class="room-content p-6">
+          <h3 class="text-2xl font-bold mb-3">Signature Suite</h3>
+          <p class="text-gray-600 mb-4">Exclusive suites with partial sea views and luxurious interiors</p>
+          <div class="flex justify-between items-center">
+            <span class="text-2xl font-bold text-gray-900">₹6,500 – ₹14,000/night</span>
+            <div class="flex gap-4">
+              <a href="/rooms" class="text-blue-600 hover:text-blue-800 font-semibold">View Details →</a>
+              <a href="/booking" class="px-4 py-2 bg-[#0096A4] text-white text-sm font-semibold rounded">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Room 6: Standard AC Room -->
+      <div class="room-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 border-2 border-yellow-300 hover:shadow-2xl">
+        <div class="room-image h-64 overflow-hidden">
+          <img src="{% static 'images/standard_ac.jpg' %}" alt="Standard AC Room" class="w-full h-full object-cover">
+        </div>
+        <div class="room-content p-6">
+          <h3 class="text-2xl font-bold mb-3">Standard AC Room</h3>
+          <p class="text-gray-600 mb-4">Comfortable air-conditioned rooms with essential amenities and garden views</p>
+          <div class="flex justify-between items-center">
+            <span class="text-2xl font-bold text-gray-900">₹3,750 – ₹10,000/night</span>
+            <div class="flex gap-4">
+              <a href="/rooms" class="text-blue-600 hover:text-blue-800 font-semibold">View Details →</a>
+              <a href="/booking" class="px-4 py-2 bg-[#0096A4] text-white text-sm font-semibold rounded">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="/rooms" class="inline-block px-10 py-4 bg-[#0096A4] text-white font-semibold rounded hover:bg-[#0096A4] transition">
+        View All Rooms
+      </a>
+    </div>
+  </div>
+</section>
+<!-- Attractions Section -->
+<section class="attractions-section relative py-20">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-black">Nearby Attractions</h2>
+      <p class="text-lg text-gray-700">Discover the best of Varkala</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Attraction 1 -->
+      <div class="attraction-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
+        <div class="attraction-image h-56 overflow-hidden">
+          <img src="{% static 'images/b_varkala.jpeg' %}" alt="Varkala Cliff" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold mb-2 text-[#003A40]">Varkala Cliff</h3>
+          <p class="text-gray-600 mb-3">Distance: 0.5 km</p>
+          <p class="text-gray-700">A scenic cliff overlooking the Arabian Sea, known for its breathtaking views, cafes, and sunsets.</p>
+        </div>
+      </div>
+
+      <!-- Attraction 2 -->
+      <div class="attraction-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
+        <div class="attraction-image h-56 overflow-hidden">
+          <img src="{% static 'images/b_papanasam.jpeg' %}" alt="Papanasam Beach" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold mb-2 text-[#003A40]">Papanasam Beach</h3>
+          <p class="text-gray-600 mb-3">Distance: 1 km</p>
+          <p class="text-gray-700">A serene beach believed to wash away sins, perfect for swimming, yoga, and relaxation by the sea.</p>
+        </div>
+      </div>
+
+      <!-- Attraction 3 -->
+      <div class="attraction-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
+        <div class="attraction-image h-56 overflow-hidden">
+          <img src="{% static 'images/b_temple.jpeg' %}" alt="Janardhana Swamy Temple" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold mb-2 text-[#003A40]">Janardhana Swamy Temple</h3>
+          <p class="text-gray-600 mb-3">Distance: 1.5 km</p>
+          <p class="text-gray-700">An ancient Hindu temple dedicated to Lord Vishnu, featuring traditional Kerala architecture and spiritual charm.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="/attractions" class="inline-block px-10 py-4 bg-[#0096A4] text-white font-semibold rounded hover:bg-[#0096A4] transition">Explore All Attractions</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="amenities-section relative py-12">
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img src="{% static 'images/amenities_b.jpg' %}" alt="Property Background" class="w-full h-full object-cover">
+    <!-- Subtle dark overlay for text readability -->
+    <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+  </div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl md:text-4xl font-bold mb-3 text-white">Our Amenities</h2>
+      <p class="text-base md:text-lg text-gray-200">Everything you need for a perfect stay</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+      <!-- Amenity 1 -->
+      <div class="amenity-card bg-white bg-opacity-90 rounded-lg p-4 shadow-lg hover:shadow-xl transition">
+        <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-3 bg-[#E6F6F8]">
+          <img src="{% static 'images/Swimming Pool.svg' %}" alt="Swimming Pool Icon" class="w-12 h-12 md:w-16 md:h-16">
+        </div>
+        <h3 class="text-xl md:text-2xl font-bold text-gray-800">Swimming Pool</h3>
+      </div>
+
+      <!-- Amenity 2 -->
+      <div class="amenity-card bg-white bg-opacity-90 rounded-lg p-4 shadow-lg hover:shadow-xl transition">
+        <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-3 bg-[#E6F6F8]">
+          <img src="{% static 'images/Parking.svg' %}" alt="Parking Icon" class="w-12 h-12 md:w-16 md:h-16">
+        </div>
+        <h3 class="text-xl md:text-2xl font-bold text-gray-800">Parking</h3>
+      </div>
+
+      <!-- Amenity 3 -->
+      <div class="amenity-card bg-white bg-opacity-90 rounded-lg p-4 shadow-lg hover:shadow-xl transition">
+        <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-3 bg-[#E6F6F8]">
+          <img src="{% static 'images/Air Conditioning.svg' %}" alt="Air Conditioning Icon" class="w-12 h-12 md:w-16 md:h-16">
+        </div>
+        <h3 class="text-xl md:text-2xl font-bold text-gray-800">Dining Area</h3>
+      </div>
+
+      <!-- Amenity 4 -->
+      <div class="amenity-card bg-white bg-opacity-90 rounded-lg p-4 shadow-lg hover:shadow-xl transition">
+        <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-3 bg-[#E6F6F8]">
+          <img src="{% static 'images/Dry Cleaning Services.svg' %}" alt="Dry Cleaning Icon" class="w-12 h-12 md:w-16 md:h-16">
+        </div>
+        <h3 class="text-xl md:text-2xl font-bold text-gray-800">Dry Cleaning</h3>
+      </div>
+    </div>
+
+    <div class="text-center mt-10">
+      <a href="/amenities" class="inline-block px-8 py-3 bg-[#0096A4] text-white font-semibold rounded hover:bg-black transition">
+        View All Amenities
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- Guest Reviews Section -->
-<section class="reviews-section py-20 bg-white">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4">What Our Guests Say</h2>
-            <p class="text-lg text-gray-600">Real experiences from our valued guests</p>
-        </div>
+<section class="reviews-section relative py-20 text-black">
+    <div class="relative container mx-auto px-6 z-10 text-center">
+        <!-- Section Header -->
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            What Our Guests Say
+        </h2>
+        <p class="text-lg max-w-2xl mx-auto mb-12">
+            Real experiences from our valued guests. Hear what they loved about their stay with us.
+        </p>
 
+        <!-- Guest Reviews -->
         <div class="grid md:grid-cols-3 gap-8">
             <!-- Review 1 -->
-            <div class="review-card bg-gray-50 rounded-lg p-8 shadow-md">
-                <div class="flex mb-4">
-                    <span class="text-yellow-400 text-2xl">★★★★★</span>
-                </div>
-                <p class="text-gray-700 mb-6 italic">"An absolutely wonderful experience! The staff was incredibly welcoming, and the rooms were spotless. The view from our balcony was breathtaking. Highly recommend!"</p>
-                <div class="flex items-center">
-                    <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-white font-bold text-xl">R</div>
-                    <div class="ml-4">
-                        <p class="font-semibold">Rahul Sharma</p>
-                        <p class="text-sm text-gray-500">Mumbai, India</p>
-                    </div>
-                </div>
+            <div>
+                <p class="text-2xl mb-2">★★★★★</p>
+                <p class="italic mb-2">
+                    "An absolutely wonderful experience! The staff was incredibly welcoming, and the rooms were spotless. The view from our balcony was breathtaking. Highly recommend!"
+                </p>
+                <p class="font-semibold">Rahul Sharma</p>
+                <p class="text-sm">Mumbai, India</p>
             </div>
 
             <!-- Review 2 -->
-            <div class="review-card bg-gray-50 rounded-lg p-8 shadow-md">
-                <div class="flex mb-4">
-                    <span class="text-yellow-400 text-2xl">★★★★★</span>
-                </div>
-                <p class="text-gray-700 mb-6 italic">"Perfect getaway for our family vacation. The kids loved the pool, and we enjoyed the peaceful ambiance. The food was delicious, and service was top-notch!"</p>
-                <div class="flex items-center">
-                    <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-white font-bold text-xl">P</div>
-                    <div class="ml-4">
-                        <p class="font-semibold">Priya Menon</p>
-                        <p class="text-sm text-gray-500">Bangalore, India</p>
-                    </div>
-                </div>
+            <div>
+                <p class="text-2xl mb-2">★★★★★</p>
+                <p class="italic mb-2">
+                    "Perfect getaway for our family vacation. The kids loved the pool, and we enjoyed the peaceful ambiance. The food was delicious, and service was top-notch!"
+                </p>
+                <p class="font-semibold">Priya Menon</p>
+                <p class="text-sm">Bangalore, India</p>
             </div>
 
             <!-- Review 3 -->
-            <div class="review-card bg-gray-50 rounded-lg p-8 shadow-md">
-                <div class="flex mb-4">
-                    <span class="text-yellow-400 text-2xl">★★★★★</span>
-                </div>
-                <p class="text-gray-700 mb-6 italic">"Exceptional hospitality! From check-in to check-out, everything was seamless. The resort's location is perfect for exploring nearby attractions. Will definitely return!"</p>
-                <div class="flex items-center">
-                    <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-white font-bold text-xl">A</div>
-                    <div class="ml-4">
-                        <p class="font-semibold">Arun Kumar</p>
-                        <p class="text-sm text-gray-500">Chennai, India</p>
-                    </div>
-                </div>
+            <div>
+                <p class="text-2xl mb-2">★★★★★</p>
+                <p class="italic mb-2">
+                    "Exceptional hospitality! From check-in to check-out, everything was seamless. The resort's location is perfect for exploring nearby attractions. Will definitely return!"
+                </p>
+                <p class="font-semibold">Arun Kumar</p>
+                <p class="text-sm">Chennai, India</p>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- Amenities Section -->
-<section class="amenities-section py-20 bg-gray-50">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4">Our Amenities</h2>
-            <p class="text-lg text-gray-600">Everything you need for a perfect stay</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Amenity 1 -->
-            <div class="amenity-card bg-white rounded-lg p-8 text-center shadow-md hover:shadow-xl transition">
-                <div class="amenity-icon mb-4">
-                    <!-- Space for logo/icon -->
-                    <div class="w-20 h-20 mx-auto bg-gray-200 rounded-full flex items-center justify-center">
-                        <i class="fas fa-swimming-pool text-4xl text-blue-600"></i>
-                    </div>
-                </div>
-                <h3 class="text-xl font-bold mb-3">Swimming Pool</h3>
-                <p class="text-gray-600">Enjoy a refreshing dip in our infinity pool with stunning views</p>
-            </div>
-
-            <!-- Amenity 2 -->
-            <div class="amenity-card bg-white rounded-lg p-8 text-center shadow-md hover:shadow-xl transition">
-                <div class="amenity-icon mb-4">
-                    <!-- Space for logo/icon -->
-                    <div class="w-20 h-20 mx-auto bg-gray-200 rounded-full flex items-center justify-center">
-                        <i class="fas fa-utensils text-4xl text-orange-600"></i>
-                    </div>
-                </div>
-                <h3 class="text-xl font-bold mb-3">Fine Dining</h3>
-                <p class="text-gray-600">Savor exquisite cuisine at our multi-cuisine restaurant</p>
-            </div>
-
-            <!-- Amenity 3 -->
-            <div class="amenity-card bg-white rounded-lg p-8 text-center shadow-md hover:shadow-xl transition">
-                <div class="amenity-icon mb-4">
-                    <!-- Space for logo/icon -->
-                    <div class="w-20 h-20 mx-auto bg-gray-200 rounded-full flex items-center justify-center">
-                        <i class="fas fa-spa text-4xl text-green-600"></i>
-                    </div>
-                </div>
-                <h3 class="text-xl font-bold mb-3">Spa & Wellness</h3>
-                <p class="text-gray-600">Relax and rejuvenate with our premium spa services</p>
-            </div>
-
-            <!-- Amenity 4 -->
-            <div class="amenity-card bg-white rounded-lg p-8 text-center shadow-md hover:shadow-xl transition">
-                <div class="amenity-icon mb-4">
-                    <!-- Space for logo/icon -->
-                    <div class="w-20 h-20 mx-auto bg-gray-200 rounded-full flex items-center justify-center">
-                        <i class="fas fa-wifi text-4xl text-purple-600"></i>
-                    </div>
-                </div>
-                <h3 class="text-xl font-bold mb-3">Free WiFi</h3>
-                <p class="text-gray-600">Stay connected with high-speed internet throughout the resort</p>
-            </div>
-        </div>
-
-        <div class="text-center mt-12">
-            <a href="/amenities" class="inline-block px-10 py-4 bg-gray-900 text-white font-semibold rounded hover:bg-gray-800 transition">View All Amenities</a>
-        </div>
-    </div>
-</section>
-
-<!-- Attractions Section -->
-<section class="attractions-section py-20 bg-white">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4">Nearby Attractions</h2>
-            <p class="text-lg text-gray-600">Discover the best of Varkala</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- Attraction 1 -->
-            <div class="attraction-card bg-white rounded-lg shadow-lg overflow-hidden">
-                <div class="attraction-image h-56 overflow-hidden">
-                    <img src="{% static 'images/b_varkala.jpeg' %}" alt="Varkala Cliff" class="w-full h-full object-cover hover:scale-110 transition duration-500">
-                </div>
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold mb-2">Varkala Cliff</h3>
-                    <p class="text-gray-600 mb-3">Distance: 0.5 km</p>
-                    <p class="text-gray-700">A scenic cliff overlooking the Arabian Sea, known for its breathtaking views, cafes, and sunsets.</p>
-                </div>
-            </div>
-
-            <!-- Attraction 2 -->
-            <div class="attraction-card bg-white rounded-lg shadow-lg overflow-hidden">
-                <div class="attraction-image h-56 overflow-hidden">
-                    <img src="{% static 'images/b_papanasam.jpeg' %}" alt="Papanasam Beach" class="w-full h-full object-cover hover:scale-110 transition duration-500">
-                </div>
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold mb-2">Papanasam Beach</h3>
-                    <p class="text-gray-600 mb-3">Distance: 1 km</p>
-                    <p class="text-gray-700">A serene beach believed to wash away sins, perfect for swimming, yoga, and relaxation by the sea.</p>
-                </div>
-            </div>
-
-            <!-- Attraction 3 -->
-            <div class="attraction-card bg-white rounded-lg shadow-lg overflow-hidden">
-                <div class="attraction-image h-56 overflow-hidden">
-                    <img src="{% static 'images/b_temple.jpeg' %}" alt="Janardhana Swamy Temple" class="w-full h-full object-cover hover:scale-110 transition duration-500">
-                </div>
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold mb-2">Janardhana Swamy Temple</h3>
-                    <p class="text-gray-600 mb-3">Distance: 1.5 km</p>
-                    <p class="text-gray-700">An ancient Hindu temple dedicated to Lord Vishnu, featuring traditional Kerala architecture and spiritual charm.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="text-center mt-12">
-            <a href="/attractions" class="inline-block px-10 py-4 bg-gray-900 text-white font-semibold rounded hover:bg-gray-800 transition">Explore All Attractions</a>
         </div>
     </div>
 </section>
@@ -348,6 +531,92 @@
         transform: scale(1.1);
     }
 </style>
+
+<section class="properties-section py-20 bg-gradient-to-b from-white to-[#E6F6F8]">
+  <div class="container mx-auto px-6">
+    <!-- Heading -->
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-black">Explore Our Properties</h2>
+      <p class="text-lg text-gray-600">Discover our unique collection of beachfront stays and local dining experiences</p>
+    </div>
+
+    <!-- Properties Grid -->
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- Property 1 -->
+      <div class="property-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition duration-300">
+        <div class="property-image h-56 overflow-hidden">
+          <img src="{% static 'images/s_cliff_b.jpg' %}" alt="S Cliff" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold mb-2 text-[#0096A4]">S Cliff</h3>
+          <p class="text-gray-700 mb-4">A serene coastal retreat overlooking the Arabian Sea — perfect for relaxation and sunset views.</p>
+          <a href="/s-cliff" class="inline-block px-6 py-2 bg-[#0096A4] hover:bg-black text-white font-semibold rounded transition duration-300">View Property</a>
+        </div>
+      </div>
+
+      <!-- Property 2 -->
+      <div class="property-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition duration-300">
+        <div class="property-image h-56 overflow-hidden">
+          <img src="{% static 'images/ar--5.jpg' %}" alt="Malavika’s by Black Beach" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold mb-2 text-[#0096A4]">Malavika’s by Black Beach</h3>
+          <p class="text-gray-700 mb-4">A boutique stay combining modern comfort with coastal charm, right by Varkala’s Black Beach.</p>
+          <a href="/malavikas-black-beach" class="inline-block px-6 py-2 bg-[#0096A4] hover:bg-black text-white font-semibold rounded transition duration-300">View Property</a>
+        </div>
+      </div>
+
+      <!-- Property 3 -->
+      <div class="property-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition duration-300">
+        <div class="property-image h-56 overflow-hidden">
+          <img src="{% static 'images/rachana_b.jpg' %}" alt="Rachana’s Black Beach Property" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold mb-2 text-[#0096A4]">Rachana’s Black Beach Property</h3>
+          <p class="text-gray-700 mb-4">A peaceful getaway offering cozy rooms, sea views, and a welcoming homely vibe.</p>
+          <a href="/rachanas-black-beach" class="inline-block px-6 py-2 bg-[#0096A4] hover:bg-black text-white font-semibold rounded transition duration-300">View Property</a>
+        </div>
+      </div>
+
+      <!-- Property 4 -->
+      <div class="property-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition duration-300">
+        <div class="property-image h-56 overflow-hidden">
+          <img src="{% static 'images/black_beach.jpg' %}" alt="Black Beach Resort" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold mb-2 text-[#0096A4]">Black Beach Resort</h3>
+          <p class="text-gray-700 mb-4">Perched beside the famous Black Sand Beach and Sunset Point — where seaside luxury meets serenity.</p>
+          <a href="/black-beach-resort" class="inline-block px-6 py-2 bg-[#0096A4] hover:bg-black text-white font-semibold rounded transition duration-300">View Property</a>
+        </div>
+      </div>
+
+      <!-- Property 5 -->
+      <div class="property-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition duration-300">
+        <div class="property-image h-56 overflow-hidden">
+          <img src="{% static 'images/restaurant.jpg' %}" alt="Restaurants" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold mb-2 text-[#0096A4]">Restaurants</h3>
+          <p class="text-gray-700 mb-4">Savor authentic Kerala cuisine and coastal delicacies at our beachfront restaurants and cafés.</p>
+          <a href="/restaurants" class="inline-block px-6 py-2 bg-[#0096A4] hover:bg-black text-white font-semibold rounded transition duration-300">View More</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA Button -->
+    <div class="text-center mt-12">
+      <a href="/properties"
+   class="inline-block px-10 py-4 bg-[#0096A4] text-white font-semibold rounded">
+   View All Properties
+</a>
+
+    </div>
+  </div>
+</section>
+
+
 
 <script>
     // Hero Slider Functionality

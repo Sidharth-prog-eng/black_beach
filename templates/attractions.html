@@ -4,55 +4,238 @@
 
 <link rel="stylesheet" href="{% static 'css/attractions.css' %}">
 
+<style>
+/* --- Page Styling --- */
+.attractions-section {
+    padding: 100px 0;
+    text-align: center;
+    background: #fafafa;
+}
+
+.section-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #1f2a44;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- Attraction Container --- */
+.attraction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 60px auto;
+    max-width: 1200px;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.attraction.reverse {
+    flex-direction: row-reverse;
+}
+
+/* --- Enhanced Image Styling --- */
+.attraction-img {
+    flex: 1 1 45%;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.attraction-img img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    filter: brightness(1.1) contrast(1.15) saturate(1.2);
+    transition: transform 0.6s ease, filter 0.4s ease, box-shadow 0.4s ease;
+}
+
+.attraction-img img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2) contrast(1.2) saturate(1.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* --- Description Section --- */
+.attraction-desc {
+    flex: 1 1 45%;
+    background: #ffffff;
+    padding: 25px 35px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.attraction-desc:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.attraction-desc h3 {
+    color: #002b5b;
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.attraction-desc p {
+    color: #333;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 10px;
+    text-align: justify;
+}
+
+/* --- Fade-in Animation --- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .attraction {
+        flex-direction: column !important;
+        text-align: center;
+    }
+    .attraction-desc {
+        text-align: center;
+    }
+    .attraction-img img {
+        height: 300px;
+    }
+}
+</style>
+
 <section class="attractions-section">
-    <h2 class="section-title">Explore Attractions</h2>
+    <h2 class="section-title">Explore Nearby Attractions</h2>
 
     <!-- Attraction 1 -->
     <div class="attraction fade-in">
         <div class="attraction-img">
-            <img src="{% static 'images/attraction1.jpg' %}" alt="Attraction 1">
+            <img src="{% static 'images/b_varkala.jpeg' %}" alt="North Cliff Varkala">
         </div>
         <div class="attraction-desc">
-            <h3>City Skyline View</h3>
-            <p>Witness the breathtaking skyline from our premium vantage points. Perfect for photography enthusiasts and tourists alike.</p>
+            <h3>North Cliff</h3>
+            <p>
+                A short distance from the beach, <strong>North Cliff</strong> offers stunning panoramic views of the Arabian Sea, vibrant local cafés, and boutique shops along the cliffside.
+                It’s the heart of Varkala’s laid-back coastal charm, perfect for sunset walks or a cozy evening by the sea.
+            </p>
+            <p><strong>Distance:</strong> Approximately 1.4 km from Black Beach Resort.</p>
         </div>
     </div>
 
     <!-- Attraction 2 -->
     <div class="attraction fade-in reverse">
         <div class="attraction-img">
-            <img src="{% static 'images/attraction2.jpg' %}" alt="Attraction 2">
+            <img src="{% static 'images/b_papanasam.jpeg' %}" alt="Varkala Beach Papanasam">
         </div>
         <div class="attraction-desc">
-            <h3>Historic Museum</h3>
-            <p>Explore the rich history and culture through modern exhibits, interactive displays, and guided tours.</p>
+            <h3>Varkala Beach (Papanasam Beach)</h3>
+            <p>
+                Known for its golden sands and spiritual significance, <strong>Papanasam Beach</strong> is one of Kerala’s most revered coastal spots.
+                Locals believe a dip in its waters washes away sins, making it both a scenic and spiritual experience. Perfect for swimming and sunset photography.
+            </p>
+            <p><strong>Distance:</strong> Approximately 2 km from Black Beach Resort.</p>
         </div>
     </div>
 
     <!-- Attraction 3 -->
     <div class="attraction fade-in">
         <div class="attraction-img">
-            <img src="{% static 'images/attraction3.jpg' %}" alt="Attraction 3">
+            <img src="{% static 'images/b_temple.jpeg' %}" alt="Janardhanaswamy Temple">
         </div>
         <div class="attraction-desc">
-            <h3>Botanical Gardens</h3>
-            <p>Stroll through beautifully curated gardens with exotic plants, fountains, and walking trails designed for relaxation.</p>
+            <h3>Janardhanaswamy Temple</h3>
+            <p>
+                A centuries-old Hindu temple dedicated to Lord Vishnu, <strong>Janardhanaswamy Temple</strong> stands as a symbol of faith and history.
+                Surrounded by palm trees and facing the sea, it’s often called the “Varanasi of the South” for its religious significance and peaceful setting.
+            </p>
+            <p><strong>Distance:</strong> Approximately 2.3 km from Black Beach Resort.</p>
         </div>
     </div>
 
     <!-- Attraction 4 -->
     <div class="attraction fade-in reverse">
         <div class="attraction-img">
-            <img src="{% static 'images/attraction4.jpg' %}" alt="Attraction 4">
+            <img src="{% static 'images/b_aqua.jpeg' %}" alt="Varkala Aquarium">
         </div>
         <div class="attraction-desc">
-            <h3>Riverfront Promenade</h3>
-            <p>Enjoy a scenic walk along the riverfront, lined with cafes, art installations, and entertainment spaces.</p>
+            <h3>Varkala Aquarium</h3>
+            <p>
+                A must-visit for families and marine life enthusiasts, the <strong>Varkala Aquarium</strong> features a unique spiral walkway showcasing exotic fish species.
+                It also includes a 3D theatre experience — educational, engaging, and perfect for kids.
+            </p>
+            <p><strong>Distance:</strong> Approximately 1.4 km from Black Beach Resort.</p>
         </div>
     </div>
 
-    <!-- Add more attractions as needed -->
+    <!-- Attraction 5 -->
+    <div class="attraction fade-in">
+        <div class="attraction-img">
+            <img src="{% static 'images/b_jadayu.jpeg' %}" alt="Jatayu Earth Center">
+        </div>
+        <div class="attraction-desc">
+            <h3>Jatayu Earth Center</h3>
+            <p>
+                Home to the world’s largest bird sculpture, the <strong>Jatayu Earth Center</strong> combines mythology, adventure, and breathtaking landscapes.
+                Visitors can enjoy cable car rides, rock climbing, and panoramic views of Kerala’s countryside.
+            </p>
+            <p><strong>Distance:</strong> Approximately 27–28 km (around 45–55 minutes by car).</p>
+        </div>
+    </div>
+
+    <!-- Attraction 6 -->
+    <div class="attraction fade-in reverse">
+        <div class="attraction-img">
+            <img src="{% static 'images/b_tunnel.jpeg' %}" alt="Varkala Tunnel">
+        </div>
+        <div class="attraction-desc">
+            <h3>Varkala Tunnel</h3>
+            <p>
+                Step back in time at the <strong>Varkala Tunnel</strong>, an iconic 19th-century engineering marvel built during the British era.
+                The tunnel was once used for transporting goods via canal and now stands as a fascinating heritage site near Varkala Beach.
+            </p>
+        </div>
+    </div>
+
+    <!-- Attraction 7 -->
+    <div class="attraction fade-in">
+        <div class="attraction-img">
+            <img src="{% static 'images/b_beach.jpeg' %}" alt="Edava Beach and Kappil Backwaters">
+        </div>
+        <div class="attraction-desc">
+            <h3>Edava Beach & Kappil Backwaters</h3>
+            <p>
+                Discover the rare beauty where sea and backwaters meet at <strong>Edava Beach</strong> and <strong>Kappil Backwaters</strong>.
+                Ideal for kayaking, boating, and peaceful walks, this destination offers an unforgettable experience of Kerala’s natural harmony.
+            </p>
+            <p><strong>Distance:</strong> Approximately 4–5 km from Black Beach Resort.</p>
+        </div>
+    </div>
+
 </section>
 
-<script src="{% static 'js/attractions.js' %}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.2 });
+
+    fadeElements.forEach(el => observer.observe(el));
+});
+</script>
+
 {% endblock %}

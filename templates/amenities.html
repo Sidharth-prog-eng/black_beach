@@ -9,51 +9,359 @@
 
     <!-- Tabs for filtering -->
     <div class="tabs">
-        <button class="tab-btn active" data-target="amenities">Amenities</button>
-        <button class="tab-btn" data-target="services">Services</button>
+        <button class="tab-btn active" onclick="showTab('amenities')">Amenities</button>
+        <button class="tab-btn" onclick="showTab('services')">Services</button>
     </div>
 
-    <!-- Amenities Grid -->
-    <div class="amenities-grid fade-in active" id="amenities">
-        <!-- Example Amenity Card -->
-        <div class="amenity-card">
-            <div class="icon">
-                <!-- Insert Icon Here -->
-            </div>
-            <h3>Free Wi-Fi</h3>
-            <p>High-speed internet access in all rooms and common areas for your convenience.</p>
+    <!-- Amenities Section -->
+    <div class="content-section active" id="amenities">
+
+        <!-- Room Facilities -->
+        <div class="category-section">
+            <h3 class="category-title">Room Facilities</h3>
+            <ul class="amenity-list">
+                <li>Air Conditioning</li>
+                <li>Private Bathroom with Shower</li>
+                <li>Free Wi-Fi</li>
+                <li>HD TV with Cable Channels</li>
+                <li>King Sized Comfortable Beds</li>
+                <li>Refrigerator</li>
+                <li>Wardrobe</li>
+                <li>Power Backup</li>
+                <li>Coffee Machine (Select Rooms)</li>
+                <li>Sanitizers</li>
+                <li>Private Entrance (Select Rooms)</li>
+                <li>In-Room Coffee & Tea Making Facilities</li>
+                <li>Telephone</li>
+                <li>Electrical Adapters & Chargers</li>
+                <li>Dining Area (Select Rooms)</li>
+                <li>Fireplace (Premium Rooms)</li>
+                <li>Microwave (Select Rooms)</li>
+                <li>Oven (Select Accommodations)</li>
+                <li>Smoking Rooms (Upon Request)</li>
+                <li>Smoke Detector</li>
+                <li>Washing Machine</li>
+                <li>Vending Machine Access</li>
+                <li>Laundromat Facilities</li>
+            </ul>
         </div>
 
-        <div class="amenity-card">
-            <div class="icon">
-                <!-- Insert Icon Here -->
-            </div>
-            <h3>Swimming Pool</h3>
-            <p>Enjoy our rooftop pool with panoramic city views and comfortable lounge seating.</p>
+        <!-- Property Facilities -->
+        <div class="category-section">
+            <h3 class="category-title">Property Facilities</h3>
+            <ul class="amenity-list">
+                <li>Private Beach Access</li>
+                <li>Swimming Pool</li>
+                <li>Balcony/Terrace with Views</li>
+                <li>Library</li>
+                <li>Aquarium</li>
+                <li>Prayer Room</li>
+                <li>Living Room (Suites)</li>
+                <li>Seating Areas</li>
+                <li>Picnic Area</li>
+                <li>Outdoor Furniture</li>
+                <li>Sun Deck</li>
+                <li>Landscaped Gardens</li>
+                <li>24-Hour Reception</li>
+                <li>Secure Parking</li>
+            </ul>
         </div>
 
-        <!-- Add more amenities as needed -->
+        <!-- Dining & Drinking -->
+        <div class="category-section">
+            <h3 class="category-title">Dining & Drinking</h3>
+            <ul class="amenity-list">
+                <li>Restaurant (Local & International Cuisine)</li>
+                <li>Café & Coffee Shop</li>
+                <li>Kids Meals</li>
+                <li>Beach Club</li>
+            </ul>
+        </div>
+
+        <!-- Entertainment & Recreation -->
+        <div class="category-section">
+            <h3 class="category-title">Entertainment & Recreation</h3>
+            <ul class="amenity-list">
+                <li>Kayaking</li>
+                <li>Boat Rides</li>
+                <li>Outdoor Sports</li>
+                <li>Water Sports</li>
+                <li>Golf Access</li>
+                <li>Snorkelling</li>
+                <li>Telescope for Stargazing</li>
+                <li>Sea Plane Tours</li>
+                <li>Water Skiing</li>
+                <li>Jungle Safari</li>
+                <li>Cycling & Bike Rentals</li>
+                <li>Vehicle Rentals (Cars, Scooters, Bikes)</li>
+                <li>Indoor Games (Carrom, Chess, Ludo)</li>
+                <li>Children's Play Area</li>
+                <li>Professional Photo Sessions</li>
+                <li>Event Support</li>
+                <li>Massage Services</li>
+                <li>Spa & Sauna</li>
+            </ul>
+        </div>
+
+        <!-- For Kids & Families -->
+        <div class="category-section">
+            <h3 class="category-title">For Kids & Families</h3>
+            <ul class="amenity-list">
+                <li>Family & Child Friendly Environment</li>
+                <li>Spacious Family Rooms</li>
+                <li>Kids Play Area</li>
+                <li>Special Kids Menu</li>
+            </ul>
+        </div>
+
+        <!-- Languages Spoken -->
+        <div class="category-section">
+            <h3 class="category-title">Languages Spoken</h3>
+            <ul class="amenity-list">
+                <li>English</li>
+                <li>Hindi</li>
+                <li>Tamil</li>
+            </ul>
+        </div>
+
+        <!-- Cleanliness & Safety -->
+        <div class="category-section">
+            <h3 class="category-title">Cleanliness & Safety</h3>
+            <ul class="amenity-list">
+                <li>Anti-Viral Cleaning Products</li>
+                <li>Daily Disinfection in All Rooms</li>
+                <li>Daily Disinfection in Common Areas</li>
+                <li>Disposable Serveware</li>
+                <li>Safety Authorization Certificate</li>
+                <li>COVID-19 Safety Measures (PPE Kits, Masks, Gloves)</li>
+                <li>Complete Safety Kits</li>
+                <li>Temperature Checks for Guests & Staff</li>
+                <li>Physical Distancing (Minimum 1 Meter)</li>
+                <li>Protective Screens in Common Areas</li>
+                <li>Hygiene Certification</li>
+                <li>Hot Water Linen & Laundry Washing</li>
+                <li>Face Coverings on Staff</li>
+                <li>Free Face Masks</li>
+                <li>Hand Sanitizers Throughout Property</li>
+                <li>Smoke-Free Areas</li>
+                <li>Cashless Payment Service</li>
+                <li>Currency Exchange</li>
+            </ul>
+        </div>
+
     </div>
 
-    <!-- Services Grid -->
-    <div class="amenities-grid fade-in" id="services">
-        <!-- Example Service Card -->
-        <div class="amenity-card">
-            <div class="icon">
-                <!-- Insert Icon Here -->
-            </div>
-            <h3>Room Service</h3>
-            <p>24/7 in-room dining with a wide selection of gourmet meals and beverages.</p>
+    <!-- Services Section -->
+    <div class="content-section" id="services">
+
+        <!-- Guest Services -->
+        <div class="category-section">
+            <h3 class="category-title">Guest Services</h3>
+            <ul class="amenity-list">
+                <li>Bellboy Service</li>
+                <li>Concierge</li>
+                <li>Luggage Assistance</li>
+                <li>Luggage Storage</li>
+                <li>24/7 Room Service</li>
+                <li>Contactless Room Service</li>
+                <li>Daily Housekeeping</li>
+                <li>Laundry Services</li>
+                <li>Dry Cleaning Services</li>
+                <li>Ironing Services</li>
+                <li>Mail & Postal Services</li>
+                <li>Wake-up Call Service</li>
+                <li>Caretaker</li>
+                <li>Daily Newspaper Delivery</li>
+                <li>Torch & Umbrellas (On Request)</li>
+                <li>Printer Services</li>
+                <li>Food Delivery Coordination</li>
+                <li>Facilities for Disabled Guests</li>
+                <li>Wheelchair Service</li>
+            </ul>
         </div>
 
-        <div class="amenity-card">
-            <div class="icon">
-                <!-- Insert Icon Here -->
-            </div>
-            <h3>Spa & Wellness</h3>
-            <p>Relax with massages, facials, and wellness treatments in our luxury spa.</p>
+        <!-- Safety & Security Services -->
+        <div class="category-section">
+            <h3 class="category-title">Safety & Security Services</h3>
+            <ul class="amenity-list">
+                <li>24-Hour Security</li>
+                <li>CCTV Surveillance</li>
+                <li>Fire Extinguishers</li>
+                <li>Smoke Alarms</li>
+                <li>Security Alarms</li>
+                <li>Emergency Exit Maps</li>
+                <li>Safe Deposit Boxes</li>
+                <li>First-Aid Services</li>
+                <li>Medical Centre</li>
+                <li>Doctor on Call</li>
+                <li>Contactless Check-in</li>
+            </ul>
         </div>
+
+        <!-- Transportation Services -->
+        <div class="category-section">
+            <h3 class="category-title">Transportation Services</h3>
+            <ul class="amenity-list">
+                <li>Airport Transfers</li>
+                <li>Railway Station Transfers</li>
+                <li>Bus Station Transfers</li>
+                <li>Shuttle Service</li>
+                <li>Public Transit Tickets Assistance</li>
+                <li>City Tours</li>
+                <li>Tour & Ticket Assistance</li>
+                <li>Tour Booking Services</li>
+            </ul>
+        </div>
+
+        <!-- Additional Services -->
+        <div class="category-section">
+            <h3 class="category-title">Additional Services</h3>
+            <ul class="amenity-list">
+                <li>Childcare Service</li>
+                <li>Pool & Beach Towels</li>
+                <li>Massage Services</li>
+                <li>Spa Services</li>
+                <li>Ticket Services</li>
+                <li>LAN Connection</li>
+            </ul>
+        </div>
+
     </div>
 </section>
-<script src="{% static 'js/amenities.js' %}"></script>
+
+<script>
+function showTab(tabName) {
+    // Hide all content sections
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
+
+    // Remove active class from all buttons
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(button => {
+        button.classList.remove('active');
+    });
+
+    // Show selected section
+    document.getElementById(tabName).classList.add('active');
+
+    // Add active class to clicked button
+    event.target.classList.add('active');
+}
+</script>
+
+<style>
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+.category-section {
+    margin-bottom: 40px;
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.category-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #3498db;
+}
+
+.amenity-list {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 30px;
+    column-gap: 40px;
+}
+
+.amenity-list li {
+    padding: 8px 0;
+    position: relative;
+    padding-left: 25px;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    list-style: none;
+}
+
+.amenity-list li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #3498db;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 1.4;
+}
+
+.amenity-list li:hover {
+    color: #3498db;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    gap: 20px;
+}
+
+.tab-btn {
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    background: #f0f8ff;
+    border-color: #3498db;
+}
+
+.tab-btn.active {
+    background: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+    .amenity-list {
+        grid-template-columns: 1fr;
+    }
+
+    .tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tab-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+</style>
+
 {% endblock %}
